@@ -1,0 +1,62 @@
+{
+  "name": "gis-dataconversion-mcp",
+  "version": "1.0.0",
+  "description": "An MCP server for converting GIS data in different formats",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "bin": {
+    "gis-mcp-server": "dist/index.js"
+  },
+  "engines": {
+    "node": ">=15.0.0"
+  },
+  "access": "public",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc && shx chmod +x dist/*.js",
+    "prepare": "npm run build",
+    "start": "node dist/index.js"
+  },
+  "keywords": [
+    "gis",
+    "geojson",
+    "wkt",
+    "shapefile",
+    "csv",
+    "topojson",
+    "kml",
+    "mcp",
+    "claude",
+    "ai"
+  ],
+  "author": "Ronan Takizawa",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.6.0",
+    "@tmcw/togeojson": "^5.6.2",
+    "csv2geojson": "^5.1.1",
+    "shpjs": "^3.6.3",
+    "topojson-client": "^3.1.0",
+    "topojson-server": "^3.0.1",
+    "wellknown": "^0.5.0",
+    "xmldom": "^0.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^15.14.9",
+    "@types/topojson-client": "^3.1.1",
+    "@types/topojson-server": "^3.0.1",
+    "shx": "^0.3.3",
+    "typescript": "^4.5.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ronantakizawa/gis-dataconversion-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ronantakizawa/gis-dataconvertersion-mcp/issues"
+  },
+  "homepage": "https://github.com/ronantakizawa/gis-dataconversino-mcp#readme"
+}
