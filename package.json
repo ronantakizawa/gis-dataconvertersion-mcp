@@ -24,7 +24,6 @@
     "gis",
     "geojson",
     "wkt",
-    "shapefile",
     "csv",
     "topojson",
     "kml",

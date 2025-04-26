@@ -10,7 +10,6 @@ import {
 
 // Import GIS conversion libraries
 import wellknown from 'wellknown';
-import * as shp from 'shpjs';
 import csv2geojson from 'csv2geojson';
 
 // Import TopoJSON libraries
@@ -114,20 +113,6 @@ class GisFormatServer {
               },
             },
             required: ['geojson'],
-          },
-        },
-        {
-          name: 'shapefile_to_geojson',
-          description: 'Convert Shapefile data (as base64) to GeoJSON',
-          inputSchema: {
-            type: 'object',
-            properties: {
-              shapefileData: {
-                type: 'string',
-                description: 'Base64 encoded Shapefile data (.shp, .dbf, etc.)',
-              },
-            },
-            required: ['shapefileData'],
           },
         },
         {
@@ -261,8 +246,6 @@ class GisFormatServer {
             return await this.wktToGeoJSON(request.params.arguments);
           case 'geojson_to_wkt':
             return await this.geoJSONToWKT(request.params.arguments);
-          case 'shapefile_to_geojson':
-            return await this.shapefileToGeoJSON(request.params.arguments);
           case 'csv_to_geojson':
             return await this.csvToGeoJSON(request.params.arguments);
           case 'geojson_to_csv':
@@ -348,35 +331,6 @@ class GisFormatServer {
       throw new McpError(
         ErrorCode.InternalError,
         `GeoJSON to WKT conversion failed: ${error instanceof Error ? error.message : String(error)}`
-      );
-    }
-  }
-
-  async shapefileToGeoJSON(args: any): Promise<ToolResponse> {
-    const { shapefileData } = args;
-
-    if (!shapefileData) {
-      throw new McpError(
-        ErrorCode.InvalidParams,
-        'Missing required parameter: shapefileData'
-      );
-    }
-
-    try {
-      console.error('[Converting] Shapefile to GeoJSON');
-      
-      // Convert base64 to ArrayBuffer
-      const binaryString = Buffer.from(shapefileData, 'base64');
-      
-      // Parse shapefile using shpjs
-      const geojson = await shp.parseShp(binaryString);
-      
-      return this.formatToolResponse(JSON.stringify(geojson, null, 2));
-    } catch (error) {
-      console.error('[Error] Shapefile to GeoJSON conversion failed:', error);
-      throw new McpError(
-        ErrorCode.InternalError,
-        `Shapefile to GeoJSON conversion failed: ${error instanceof Error ? error.message : String(error)}`
       );
     }
   }

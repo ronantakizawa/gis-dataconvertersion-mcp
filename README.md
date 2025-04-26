@@ -6,7 +6,6 @@ This server uses various GIS libraries to allow LLMs to convert between differen
 
 - **Reverse geocoding** - Convert coordinates to location information
 - **WKT/GeoJSON conversion** - Convert between Well-Known Text and GeoJSON formats
-- **Shapefile processing** - Convert Shapefiles to GeoJSON format
 - **CSV conversion** - Transform tabular data with coordinates to GeoJSON and vice versa
 - **TopoJSON support** - Convert between GeoJSON and TopoJSON (topology-preserving format)
 - **KML conversion** - Transform KML files to GeoJSON format
@@ -46,9 +45,6 @@ Converts Well-Known Text (WKT) to GeoJSON format.
 
 ### geojson_to_wkt
 Converts GeoJSON to Well-Known Text (WKT) format.
-
-### shapefile_to_geojson
-Converts Shapefile data (as base64) to GeoJSON.
 
 ### csv_to_geojson
 Converts CSV with geographic data to GeoJSON.
@@ -91,7 +87,6 @@ Converts latitude/longitude coordinates to location name using reverse geocoding
 
 - @modelcontextprotocol/sdk
 - wellknown
-- shpjs
 - csv2geojson
 - topojson-client
 - topojson-server
