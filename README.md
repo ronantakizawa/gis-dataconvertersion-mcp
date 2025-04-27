@@ -10,11 +10,18 @@ This server uses various GIS libraries to allow LLMs to convert between differen
 
 ## Features
 
-- **Reverse geocoding** - Convert coordinates to location information
-- **WKT/GeoJSON conversion** - Convert between Well-Known Text and GeoJSON formats
-- **CSV conversion** - Transform tabular data with coordinates to GeoJSON and vice versa
-- **TopoJSON support** - Convert between GeoJSON and TopoJSON (topology-preserving format)
-- **KML conversion** - Transform KML files to GeoJSON format
+- **Reverse Geocoding** - Convert coordinates to location information
+- **WKT/GeoJSON Conversion** - Convert between Well-Known Text and GeoJSON formats
+- **CSV Conversion** - Transform tabular data with coordinates to GeoJSON and vice versa
+- **TopoJSON Conversion** - Convert between GeoJSON and TopoJSON (topology-preserving format)
+- **KML Conversion** - Transform KML files to GeoJSON format
+
+## Demo
+### Reverse Geocoding
+https://github.com/user-attachments/assets/e21b10c3-bb67-4322-9742-efa8c7d8b332
+
+### TopoJSON to GeoJSON
+https://github.com/user-attachments/assets/a5d56051-8aed-48bb-8de1-820df8d34fe3
 
 ## Installation
 To use this server with Claude Desktop, you need to configure it in the MCP settings:
