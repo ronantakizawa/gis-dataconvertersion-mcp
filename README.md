@@ -12,9 +12,9 @@ This server uses various GIS libraries to allow LLMs to convert between differen
 
 - **Reverse Geocoding** - Convert coordinates to location information
 - **WKT/GeoJSON Conversion** - Convert between Well-Known Text and GeoJSON formats
-- **CSV Conversion** - Transform tabular data with coordinates to GeoJSON and vice versa
-- **TopoJSON Conversion** - Convert between GeoJSON and TopoJSON (topology-preserving format)
-- **KML Conversion** - Transform KML files to GeoJSON format
+- **CSV/GeoJSON Conversion** - Transform tabular data with coordinates to GeoJSON and vice versa
+- **TopoJSON/GeoJSON Conversion** - Convert between GeoJSON and TopoJSON (topology-preserving format)
+- **KML/GeoJSON Conversion** - Transform KML files to GeoJSON format
 
 ## Demo
 ### Reverse Geocoding
@@ -91,6 +91,9 @@ Converts TopoJSON to GeoJSON format.
 
 ### kml_to_geojson
 Converts KML to GeoJSON format.
+
+### geojson_to_kml
+Converts GeoJSON to KML format.
 
 ### coordinates_to_location
 Converts latitude/longitude coordinates to location name using reverse geocoding.
