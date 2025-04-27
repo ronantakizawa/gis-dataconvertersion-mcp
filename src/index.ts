@@ -16,8 +16,9 @@ import csv2geojson from 'csv2geojson';
 import * as topojsonClient from 'topojson-client';
 import * as topojsonServer from 'topojson-server';
 
-// Import KML/KMZ conversion library
+// Import KML/KMZ conversion libraries
 import { kml as kmlToGeoJSON } from '@tmcw/togeojson';
+import tokml from 'tokml';
 import { DOMParser } from 'xmldom';
 
 // Import https for making requests (Node.js built-in)
@@ -218,6 +219,40 @@ class GisFormatServer {
           },
         },
         {
+          name: 'geojson_to_kml',
+          description: 'Convert GeoJSON to KML format',
+          inputSchema: {
+            type: 'object',
+            properties: {
+              geojson: {
+                type: 'object',
+                description: 'GeoJSON object to convert',
+              },
+              documentName: {
+                type: 'string',
+                description: 'Name for the KML document',
+                default: 'GeoJSON Conversion',
+              },
+              documentDescription: {
+                type: 'string',
+                description: 'Description for the KML document',
+                default: 'Converted from GeoJSON by GIS Format Conversion MCP',
+              },
+              nameProperty: {
+                type: 'string',
+                description: 'Property name in GeoJSON to use as KML name',
+                default: 'name',
+              },
+              descriptionProperty: {
+                type: 'string',
+                description: 'Property name in GeoJSON to use as KML description',
+                default: 'description',
+              }
+            },
+            required: ['geojson'],
+          },
+        },
+        {
           name: 'coordinates_to_location',
           description: 'Convert latitude/longitude coordinates to location name using reverse geocoding',
           inputSchema: {
@@ -256,6 +291,8 @@ class GisFormatServer {
             return await this.topojsonToGeoJSON(request.params.arguments);
           case 'kml_to_geojson':
             return await this.kmlToGeoJSON(request.params.arguments);
+          case 'geojson_to_kml':
+            return await this.geojsonToKML(request.params.arguments);
           case 'coordinates_to_location':
             return await this.coordinatesToLocation(request.params.arguments);
           default:
@@ -565,6 +602,46 @@ class GisFormatServer {
       throw new McpError(
         ErrorCode.InternalError,
         `KML to GeoJSON conversion failed: ${error instanceof Error ? error.message : String(error)}`
+      );
+    }
+  }
+
+  async geojsonToKML(args: any): Promise<ToolResponse> {
+    const { 
+      geojson, 
+      documentName = 'GeoJSON Conversion', 
+      documentDescription = 'Converted from GeoJSON by GIS Format Conversion MCP', 
+      nameProperty = 'name',
+      descriptionProperty = 'description'
+    } = args;
+    
+    if (!geojson) {
+      throw new McpError(
+        ErrorCode.InvalidParams,
+        'Missing required parameter: geojson'
+      );
+    }
+    
+    try {
+      console.error('[Converting] GeoJSON to KML');
+      
+      // Set up options for tokml
+      const options = {
+        documentName: documentName,
+        documentDescription: documentDescription,
+        name: nameProperty,
+        description: descriptionProperty
+      };
+      
+      // Convert GeoJSON to KML using tokml
+      const kml = tokml(geojson, options);
+      
+      return this.formatToolResponse(kml);
+    } catch (error) {
+      console.error('[Error] GeoJSON to KML conversion failed:', error);
+      throw new McpError(
+        ErrorCode.InternalError,
+        `GeoJSON to KML conversion failed: ${error instanceof Error ? error.message : String(error)}`
       );
     }
   }
