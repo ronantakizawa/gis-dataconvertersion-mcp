@@ -1,77 +1,72 @@
 // Type definitions for missing modules
 
 declare module 'wellknown' {
-    export function parse(wkt: string): any;
-    export function stringify(geojson: any): string;
-    export default {
-      parse,
-      stringify
-    };
+  export function parse(wkt: string): GeoJSON.Geometry | GeoJSON.Feature | null;
+  export function stringify(geojson: GeoJSON.Geometry | GeoJSON.Feature): string;
+  
+  const _default: {
+    parse: typeof parse;
+    stringify: typeof stringify;
+  };
+  export default _default;
+}
+
+declare module 'csv2geojson' {
+  export interface Csv2GeoJSONOptions {
+    latfield: string;
+    lonfield: string;
+    delimiter?: string;
   }
   
-  declare module 'shpjs' {
-    export function parseShp(buffer: Buffer | ArrayBuffer): Promise<any>;
-    export function parseDbf(buffer: Buffer | ArrayBuffer): Promise<any>;
-    export function combine(arrays: any[]): any;
-    export function parseZip(buffer: Buffer | ArrayBuffer): Promise<any>;
-    export default {
-      parseShp,
-      parseDbf,
-      combine,
-      parseZip
-    };
+  export interface GeoJSONResult {
+    type: string;
+    features: Array<{
+      type: string;
+      properties: Record<string, any>;
+      geometry: {
+        type: string;
+        coordinates: number[];
+      };
+    }>;
   }
   
-  declare module 'csv2geojson' {
-    export interface Csv2GeoJSONOptions {
-      latfield: string;
-      lonfield: string;
-      delimiter?: string;
-    }
-    
-    export function csv2geojson(
-      csvString: string, 
-      options: Csv2GeoJSONOptions, 
-      callback: (err: Error | null, data: any) => void
-    ): void;
-    
-    export default {
-      csv2geojson
-    };
+  export function csv2geojson(
+    csvString: string, 
+    options: Csv2GeoJSONOptions, 
+    callback: (err: Error | null, data: GeoJSONResult | null) => void
+  ): void;
+  
+  const _default: {
+    csv2geojson: typeof csv2geojson;
+  };
+  export default _default;
+}
+
+declare module 'quadkeytools' {
+  export interface BoundingBox {
+    north: number;
+    south: number;
+    east: number;
+    west: number;
   }
   
-  declare module 'quadkeytools' {
-    export interface BoundingBox {
-      north: number;
-      south: number;
-      east: number;
-      west: number;
-    }
-    
-    export interface Location {
-      lat: number;
-      lng: number;
-    }
-    
-    export function locationToQuadkey(location: Location, detail: number): string;
-    export function bbox(quadkey: string): BoundingBox;
-    export function children(quadkey: string): string[];
-    export function inside(location: Location, quadkey: string): boolean;
-    export function sibling(quadkey: string, direction: 'left' | 'right' | 'up' | 'down'): string;
-    
-    export default {
-      locationToQuadkey,
-      bbox,
-      children,
-      inside,
-      sibling
-    };
+  export interface Location {
+    lat: number;
+    lng: number;
   }
   
-  declare module 'epsg' {
-    export function getProj4(epsgCode: number): string | null;
-    
-    export default {
-      getProj4
-    };
-  }
+  export function locationToQuadkey(location: Location, detail: number): string;
+  export function bbox(quadkey: string): BoundingBox;
+  export function children(quadkey: string): string[];
+  export function inside(location: Location, quadkey: string): boolean;
+  export function sibling(quadkey: string, direction: 'left' | 'right' | 'up' | 'down'): string;
+  
+  const _default: {
+    locationToQuadkey: typeof locationToQuadkey;
+    bbox: typeof bbox;
+    children: typeof children;
+    inside: typeof inside;
+    sibling: typeof sibling;
+  };
+  export default _default;
+}
