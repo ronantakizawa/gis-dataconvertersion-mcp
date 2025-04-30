@@ -2,6 +2,10 @@
 
 [![smithery badge](https://smithery.ai/badge/@ronantakizawa/gis-dataconvertersion-mcp)](https://smithery.ai/server/@ronantakizawa/gis-dataconvertersion-mcp)
 
+<a href="https://glama.ai/mcp/servers/@ronantakizawa/gis-dataconvertersion-mcp">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/@ronantakizawa/gis-dataconvertersion-mcp/badge" alt="GIS Data Conversion MCP server" />
+</a>
+
 ![Copy of Untitled Design](https://github.com/user-attachments/assets/c143d9f0-710f-4164-ada9-128563746d66)
 
 The GIS Data Conversion MCP is an MCP (Model Context Protocol) server that gives LLMs access to geographic data conversion tools.
