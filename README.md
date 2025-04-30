@@ -2,8 +2,8 @@
 
 [![smithery badge](https://smithery.ai/badge/@ronantakizawa/gis-dataconvertersion-mcp)](https://smithery.ai/server/@ronantakizawa/gis-dataconvertersion-mcp)
 
-<a href="https://glama.ai/mcp/servers/@ronantakizawa/gis-dataconversion-mcp">
-  <img width="380" height="200" src="https://glama.ai/mcp/servers/@ronantakizawa/gis-dataconversion-mcp/badge" />
+<a href="https://glama.ai/mcp/servers/@ronantakizawa/gis-dataconvertersion-mcp">
+  <img width="380" height="200" src="https://glama.ai/mcp/servers/@ronantakizawa/gis-dataconvertersion-mcp/badge" />
 </a>
 
 ![Copy of Untitled Design](https://github.com/user-attachments/assets/c143d9f0-710f-4164-ada9-128563746d66)
